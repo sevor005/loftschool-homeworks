@@ -40,7 +40,6 @@ export default class Form extends Component {
   //   this.setState({ passwordValue: event.target.value })
   // }
 
-
 // вот эта функция!!
   handlerValue = (event, nameValue) => {
     this.setState({ [nameValue]: event.target.value })
