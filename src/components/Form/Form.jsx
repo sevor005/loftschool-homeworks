@@ -10,8 +10,6 @@ export default class Form extends Component {
     error: {}
   }
 
-// при отправке
-
 // проверка на ввод данных onBlur
   handleChange = (key, value, errorName) => {
     if(this.state[key] !== value) {
@@ -41,6 +39,7 @@ export default class Form extends Component {
   // handlerChangePassword = event => {
   //   this.setState({ passwordValue: event.target.value })
   // }
+
 
 // вот эта функция!!
   handlerValue = (event, nameValue) => {
