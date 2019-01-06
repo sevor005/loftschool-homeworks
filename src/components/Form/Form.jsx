@@ -27,22 +27,13 @@ export default class Form extends Component {
        this.state.passwordValue === '007') {
         window.open('https://google.com')
     }
+    this.setState({ firstNameValue: '' })
+    this.setState({ lastNameValue: '' })
+    this.setState({ passwordValue: '' })
   }
 
-//onChange
-  // handlerChangeName = event => {
-  //   this.setState({ firstNameValue: event.target.value })
-  // }
-  // handlerChangeLastName = event => {
-  //   this.setState({ lastNameValue: event.target.value })
-  // }
-  // handlerChangePassword = event => {
-  //   this.setState({ passwordValue: event.target.value })
-  // }
-
-// вот эта функция!!
-  handlerValue = (event, nameValue) => {
-    this.setState({ [nameValue]: event.target.value })
+  handlerValue = (event, stateField) => {
+    this.setState({ [stateField]: event.target.value })
   }
 
   render() {
@@ -60,8 +51,7 @@ export default class Form extends Component {
               className="field__input field-input t-input-firstname"
               name="firstname"
               value={ this.state.firstNameValue }
-              // onChange={ this.handlerChangeName }
-              onChange={() => this.handlerValue('event', 'firstNameValue')}
+              onChange={(event) => this.handlerValue(event, 'firstNameValue')}
               onBlur={() => this.handleChange('firstNameValue', 'James', 'Имя не подходит!')}
             />
               <span className="field__error field-error t-error-firstname">{ this.state.error.firstNameValue }</span>
@@ -76,8 +66,7 @@ export default class Form extends Component {
               className="field__input field-input t-input-lasttname"
               name="lastname"
               value={ this.state.lastNameValue }
-              // onChange={ this.handlerChangeLastName }
-              onChange={() => this.handlerValue('event', 'lastNameValue')}
+              onChange={(event) => this.handlerValue(event, 'lastNameValue')}
               onBlur={() => this.handleChange('lastNameValue', 'Bond', 'Фамилия не подходит!')}
             />
               <span className="field__error field-error t-error-firstname">{ this.state.error.lastNameValue }</span>
@@ -92,8 +81,7 @@ export default class Form extends Component {
               className="field__input field-input t-input-password"
               name="password"
               value={ this.state.passwordValue }
-              // onChange={ this.handlerChangePassword }
-              onChange={() => this.handlerValue('event', 'passwordValue')}
+              onChange={(event) => this.handlerValue(event, 'passwordValue')}
               onBlur={() => this.handleChange('passwordValue', '007', 'Пароль не подходит!')}
             />
               <span className="field__error field-error t-error-firstname">{ this.state.error.passwordValue }</span>
