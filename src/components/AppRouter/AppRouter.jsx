@@ -19,7 +19,9 @@ import OutboxMail from '../OutboxMail';
 import style from './AppRouter.module.css';
 
 class AppRouter extends PureComponent {
-  render() {
+  renderTitle = (title) => () => title;
+
+    render() {
     return (
       <div className={style.wrapper}>
          <div className={style.container}>
@@ -43,7 +45,13 @@ class AppRouter extends PureComponent {
             </ul>
           </nav>
           <div className={style.content}>
-            <h3 className={style.title}>{this.props.location.pathname}</h3>
+            <h3 className={style.title}>
+            <Switch>
+              <Route path='/app' component={this.renderTitle('Home')} exact />
+              <Route path="/app/inbox" component={this.renderTitle('Inbox')} />
+              <Route path="/app/outbox" component={this.renderTitle('Outbox')} />
+            </Switch>
+            </h3>
            <Switch>
             <Route path='/app' component={Home} exact />
             <Route path="/app/inbox" component={InboxList} exact />

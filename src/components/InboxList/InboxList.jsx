@@ -11,7 +11,6 @@ import MailList from '../MailList';
 class InboxList extends PureComponent {
   render() {
     return(
-      // eslint-disable-next-line react/destructuring-assignment
       <MailList mails={this.props.data.inbox.map(({id, body}) => ({title: body.substring(0, 53), link: `/app/inbox/${id}`}))} />
     )
   }
