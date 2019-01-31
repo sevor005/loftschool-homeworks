@@ -1,4 +1,4 @@
-import {searchRequest, searchSuccess, searchFailure} from '../Actions/search';
+// import {searchRequest, searchSuccess, searchFailure} from '../Actions/search';
 
 const initialSearch = {
   isFetching: false,

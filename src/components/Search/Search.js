@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 // Реализуйте страницу поиска.
 
 // Используйте метод connect и mapStateToProps, mapDispatchToProps,

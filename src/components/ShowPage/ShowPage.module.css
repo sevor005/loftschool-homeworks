@@ -3,3 +3,14 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.loadingWrap {
+  width: 300px;
+  height: 50px;
+  margin: 50px auto 0;
+  text-align: center;
+}
+
+.loading {
+  font-size: 20px;
+}

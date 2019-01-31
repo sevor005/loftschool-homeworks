@@ -16,22 +16,38 @@ class ShowPage extends Component {
 
   componentDidMount() {
     const {showRequest} = this.props;
-    showRequest(this.getShowId)
+    showRequest(this.getShowId())
   }
 
   getShowId = () => {
-    const {id}  = this.props.match.params;
+    const {id} = this.props.match.params;
     return id;
   }
 
-  render() {
+  renderShow = () => {
     console.log(this.props)
+    const {cast} = this.props.shows.entities._embedded;
+    return (
+      cast.map(el => {
+        return (<div key={el.person.id}>
+          <p>{el.person.name}</p>
+          {el.person.image && <img src={el.person.image.medium} alt={el.person.name} />}
+        </div>)
+      })
+    )
+  }
+
+  render() {
+    // console.log(this.props)
     const { isFetching, entities } = this.props.shows;
 
     if(isFetching) {
-      return <p>Загрузка...</p>
+      return (
+        <div className={styles.loadingWrap}>
+          <p className={styles.loading}>Загрузка...</p>
+        </div>
+      )
     }
-
     return (
       <div>
         <p>{entities.name}</p>
@@ -42,12 +58,16 @@ class ShowPage extends Component {
         <div dangerouslySetInnerHTML={{__html:entities.summary}}></div>
         </div>
 
-        {this.props.entities._embedded.cast.person.map((el) => (
-          <div key={el.person.id}>
+        {isFetching ? this.renderShow : null}
+
+
+        {/* {isFetching && this.props.shows.entities._embedded.cast[0].map((el) => {
+          console.log(el)
+          return (<div key={el.person.id}>
             <p>{el.person.name}</p>
             {el.person.image && <img src={el.person.image.medium} alt={el.person.name} />}
-          </div>
-        ))}
+          </div>);
+        })} */}
 
       </div>
     )
