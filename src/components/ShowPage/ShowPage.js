@@ -25,20 +25,21 @@ class ShowPage extends Component {
   }
 
   renderShow = () => {
-    console.log(this.props)
-    const {cast} = this.props.shows.entities._embedded;
-    return (
+    if(this.props.shows.entities['_embedded']) {
+      const {cast} = this.props.shows.entities._embedded;
+      return (
       cast.map(el => {
         return (<div key={el.person.id}>
           <p>{el.person.name}</p>
           {el.person.image && <img src={el.person.image.medium} alt={el.person.name} />}
         </div>)
       })
-    )
+      )
+    }
+
   }
 
   render() {
-    // console.log(this.props)
     const { isFetching, entities } = this.props.shows;
 
     if(isFetching) {
@@ -48,6 +49,7 @@ class ShowPage extends Component {
         </div>
       )
     }
+
     return (
       <div>
         <p>{entities.name}</p>
@@ -58,16 +60,7 @@ class ShowPage extends Component {
         <div dangerouslySetInnerHTML={{__html:entities.summary}}></div>
         </div>
 
-        {isFetching ? this.renderShow : null}
-
-
-        {/* {isFetching && this.props.shows.entities._embedded.cast[0].map((el) => {
-          console.log(el)
-          return (<div key={el.person.id}>
-            <p>{el.person.name}</p>
-            {el.person.image && <img src={el.person.image.medium} alt={el.person.name} />}
-          </div>);
-        })} */}
+        {!isFetching ? this.renderShow() : null}
 
       </div>
     )
